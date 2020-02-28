@@ -35,7 +35,7 @@ contract crowdsale{
     event Refund(address investor, uint256 value);
     
     ///constructor qui prend en parametre le teken et le prix de notre token la date de debut et de fin de la vente
-    constructor(uint256 _startTime, uint256 _deadline, uint256 _ccPrice, uint256 _minCc)public
+    constructor(CarCoin _carcoin,uint256 _startTime, uint256 _deadline, uint256 _ccPrice, uint256 _minCc)public
     {
         ///je verifie si la date de debut est superieur à la date actuel et que la date de fin superieur à la date de debut de la vente des carCoin(token)
        require(_startTime>=now); 
@@ -49,7 +49,7 @@ contract crowdsale{
        ccPrice=_ccPrice;
        objectivCc=_minCc;
        
-       carCoin= new CarCoin(); ///iinstance du Token : CarCoin
+       carCoin=_carcoin; ///iinstance du Token : CarCoin
        isFinalized=false; 
        isRefundingAllowed=false;
        owner=msg.sender; ///owner la personne qui deploie le contrat
